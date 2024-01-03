@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ygw.user.mapper.ChatUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.ygw.user.entity.ChatUser">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="chatNo" column="chat_no" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="phone" column="phone" jdbcType="VARCHAR"/>
+            <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+            <result property="maxHead" column="max_head" jdbcType="VARCHAR"/>
+            <result property="minHead" column="min_head" jdbcType="VARCHAR"/>
+            <result property="spell" column="spell" jdbcType="VARCHAR"/>
+            <result property="gmtCreate" column="gmt_create" jdbcType="TIMESTAMP"/>
+            <result property="gmtModified" column="gmt_modified" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,chat_no,password,
+        email,phone,nick_name,
+        max_head,min_head,spell,
+        gmt_create,gmt_modified
+    </sql>
+</mapper>

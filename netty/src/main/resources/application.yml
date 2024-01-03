@@ -1,0 +1,24 @@
+spring:
+    application:
+        name: jChat-netty
+    rabbitmq:
+        port: 5672
+        host: 192.168.1.103
+        virtual-host: /
+        username: admin
+        password: admin
+    cloud:
+        nacos:
+            config:
+                file-extension: yml
+                server-addr: 127.0.0.1:8848
+                username: nacos
+                password: nacos
+    config:
+        import:
+           - optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+    data:
+        redis:
+            host: 192.168.1.103
+netty:
+    port: 8084

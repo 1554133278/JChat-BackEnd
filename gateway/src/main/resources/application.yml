@@ -1,0 +1,40 @@
+server:
+  port: 8080
+spring:
+    application:
+        name: jChat-gateway
+    cloud:
+      nacos:
+        discovery:
+          server-addr: localhost:8848
+          username: nacos
+          password: nacos
+      gateway:
+        discovery:
+          locator:
+            enabled: true
+        globalcors: # 全局的跨域处理
+          add-to-simple-url-handler-mapping: true # 解决options请求被拦截问题
+          corsConfigurations:
+            '[/**]':
+              allowedOrigins: # 允许哪些网站的跨域请求
+                - "http://localhost:8080"
+                - "http://localhost:21503"
+              allowedMethods: # 允许的跨域ajax的请求方式
+                - "GET"
+                - "POST"
+                - "DELETE"
+                - "PUT"
+                - "OPTIONS"
+              allowedHeaders: "*" # 允许在请求中携带的头信息
+              allowCredentials: true # 是否允许携带cookie
+              maxAge: 360000 # 这次跨域检测的有效期
+        routes:
+          - id: user_router
+            uri: lb://jChat-user
+            predicates:
+              - Path=/user/**,/friend/**,/res/**
+          - id: netty_router
+            uri: lb://jChat-netty
+            predicates:
+              - Path=/netty/**
